@@ -4,7 +4,7 @@
 	<name>[WGM] Organization Dupe Finder</name>
 	<description>Finds duplicate organizations in your address book by analyzing subtle variations and misspellings.</description>
 	<author>WebGroup Media, LLC.</author>
-	<revision>1</revision>
+	<version>1.0.0</version>
 	<link>http://www.cerb5.com/</link>
 	<image>plugin.png</image>
  
