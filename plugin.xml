@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.devblocks.com/schema/plugin.xsd">
 	<id>wgm.org_dupe_finder</id>
-	<name>[WGM] Organization Dupe Finder</name>
+	<name>Organization Dupe Finder</name>
 	<description>Finds duplicate organizations in your address book by analyzing subtle variations and misspellings.</description>
 	<author>WebGroup Media, LLC.</author>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<link>http://www.cerb5.com/</link>
 	<image>plugin.png</image>
  
  	<!-- Requirements -->
 
 	<requires>
-		<app_version min="5.6.1" max="5.7.99" />
+		<app_version min="5.6.1" max="5.8.99" />
 	</requires>
  
 	<!-- Plugin Dependencies -->
