@@ -9,7 +9,7 @@
 			<b>{$org.name}</b>
 		</label>
 		
-		<a href="javascript:;" style="display:none;" onclick="genericAjaxPopup('peek','c=contacts&a=showOrgPeek&id={$org.id}',null,false,'550');"><span class="cerb-sprite2 sprite-document-search-result" style="vertical-align:middle;"></span></a>
+		<a href="javascript:;" style="display:none;" onclick="genericAjaxPopup('peek','c=internal&a=showPeekPopup&context={CerberusContexts::CONTEXT_ORG}&context_id={$org.id}',null,false,'550');"><span class="cerb-sprite2 sprite-document-search-result" style="vertical-align:middle;"></span></a>
 	</li>
 {/foreach}
 </ul>
