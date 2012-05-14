@@ -1,9 +1,9 @@
 <?php
-if(class_exists('Extension_AddressBookTab', true)):
-class WgmOrgDupeFinder_ContactsTab extends Extension_AddressBookTab {
-	public function showTab() {
+if(class_exists('Extension_WorkspaceTab', true)):
+class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
+	public function renderTab(Model_WorkspacePage $page, Model_WorkspaceTab $tab) {
 		$tpl = DevblocksPlatform::getTemplateService();
-		$tpl->display('devblocks:wgm.org_dupe_finder::contacts/tab.tpl');		
+		$tpl->display('devblocks:wgm.org_dupe_finder::tab.tpl');		
 	}
 	
 	function findDupesAction() {
@@ -60,7 +60,7 @@ class WgmOrgDupeFinder_ContactsTab extends Extension_AddressBookTab {
 					
 					if(!empty($this->_buffer)) {
 						$tpl->assign('similarities', $this->_buffer);
-						$tpl->display('devblocks:wgm.org_dupe_finder::contacts/results.tpl');
+						$tpl->display('devblocks:wgm.org_dupe_finder::results.tpl');
 					}
 				}
 				
@@ -84,14 +84,6 @@ class WgmOrgDupeFinder_ContactsTab extends Extension_AddressBookTab {
 		$smaller = ($len_a < $len_b) ? $a : $b;
 		$larger = ($smaller == $a) ? $b : $a;
 		$dist = levenshtein($a['indexed'], $b['indexed']);
-		
-// 		echo sprintf("%s and %s are %0.2f different (%d/%d)<br>",
-// 			$a['indexed'],
-// 			$b['indexed'],
-// 			$dist / $min,
-// 			$dist,
-// 			$min
-// 		);
 		
 		// If the larger string contains the smaller one verbatim, or they diverge less than 20%
 		if(false !== strstr($larger['indexed'], $smaller['indexed']) || ($dist / $min) <= 0.20) {

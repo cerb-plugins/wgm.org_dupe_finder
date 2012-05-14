@@ -1,4 +1,4 @@
-<fieldset style="margin:0;margin-top:10px;">
+<fieldset style="margin:0;margin-top:10px;" class="peek">
 <a href="javascript:;" style="display:none;position:absolute;margin-top:-10px;margin-left:-15px;" onclick="$(this).closest('fieldset').remove();"><span class="cerb-sprite2 sprite-cross-circle-frame" style="vertical-align:middle;"></span></a>
 
 <ul style="list-style:none;margin:0;padding:0;">

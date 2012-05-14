@@ -4,40 +4,39 @@
 	<name>Organization Dupe Finder</name>
 	<description>Finds duplicate organizations in your address book by analyzing subtle variations and misspellings.</description>
 	<author>WebGroup Media, LLC.</author>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<link>http://www.cerb5.com/</link>
 	<image>plugin.png</image>
  
  	<!-- Requirements -->
 
 	<requires>
-		<app_version min="5.6.1" max="5.8.99" />
+		<app_version min="6.0" max="6.0.99" />
 	</requires>
  
 	<!-- Plugin Dependencies -->
 	
 	<dependencies>
-		<require plugin_id="cerberusweb.core" version="5.6.1" />
+		<require plugin_id="cerberusweb.core" version="6.0.0-dev" />
 	</dependencies>
 
 	<!-- Extensions -->
  
 	<extensions>
 	
-		<!-- Address Book Tabs -->
+		<!-- Workspace Tab -->
 		
-		<extension point="cerberusweb.contacts.tab">
+		<extension point="cerberusweb.ui.workspace.tab">
 			<id>wgm.orgdupefinder.tab</id>
 			<name>Org Dupe Finder Tab</name>
 			<class>
 				<file>api/App.php</file>
-				<name>WgmOrgDupeFinder_ContactsTab</name>
+				<name>WorkspaceTab_WgmOrgDupeFinder</name>
 			</class>
 			<params>
-				<param key="uri" value="org_dupes" />
-    			<param key="title" value="Find Dupes" />
+				<param key="label" value="wgm.orgdupefinder.tab.label" />
 			</params>
-		</extension>
+		</extension>		
 	
     </extensions> 
 </plugin>

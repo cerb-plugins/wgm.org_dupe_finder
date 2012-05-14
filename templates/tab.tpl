@@ -1,12 +1,17 @@
 <form id="frmFindDupeOrgs" action="{devblocks_url}{/devblocks_url}" method="POST" style="margin-bottom:10px;" onsubmit="return false;">
-	<input type="hidden" name="c" value="contacts">
+	<input type="hidden" name="c" value="pages">
 	<input type="hidden" name="a" value="handleTabAction">
 	<input type="hidden" name="tab" value="wgm.orgdupefinder.tab">
+	<input type="hidden" name="tab_id" value="{$tab->id}">
 	<input type="hidden" name="action" value="findDupes">
 
-	<button type="button" class="search"><span class="cerb-sprite2 sprite-document-search-result"></span> Find Similar Orgs</button>
-	 &nbsp; 
-	Starts with: <input type="text" name="starts_with" size="6" value="">
+	<fieldset>
+		<legend>Find Similar Organizations</legend>
+		
+		Starts with: <input type="text" name="starts_with" size="6" value="">
+		
+		<button type="button" class="search"><span class="cerb-sprite sprite-view"></span> {'common.search'|devblocks_translate|capitalize}</button>
+	</fieldset>
 </form>
 	
 <form id="frmOrgDupeResults" action="{devblocks_url}{/devblocks_url}" method="POST" onsubmit="return false;">
@@ -25,10 +30,11 @@
 <script type="text/javascript">
 $frm = $('#frmFindDupeOrgs');
 
-$frm.find('> button.search').click(function(e) {
+$frm.find('button.search').click(function(e) {
 	$('#frmOrgDupeResults div.toolbar').prependTo($('#frmOrgDupeResults'));
 	$('#divOrgDupeResults').html('<div style="font-size:18pt;text-align:center;padding:50px;margin:20px;background-color:rgb(232,242,255);">Computing, please wait...</div>');
-	genericAjaxPost('frmFindDupeOrgs','','c=contacts&a=handleTabAction',function(html) {
+	
+	genericAjaxPost('frmFindDupeOrgs','','c=pages&a=handleTabAction',function(html) {
 		$div = $('#divOrgDupeResults');
 		$div.html(html);
 		$div.find('input:checkbox')

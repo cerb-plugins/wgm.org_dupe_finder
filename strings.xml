@@ -6,11 +6,9 @@
 
 		<!-- Plugin Strings -->
 
-		<!--
-		<tu tuid='namespace.feature.string_name'>
-			<tuv xml:lang="en_US"><seg>Replace this with your own text.</seg></tuv>
+		<tu tuid='wgm.orgdupefinder.tab.label'>
+			<tuv xml:lang="en_US"><seg>Duplicate Organization Finder</seg></tuv>
 		</tu>
-		-->
 		
 	</body>
 </tmx>

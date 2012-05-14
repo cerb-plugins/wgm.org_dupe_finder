@@ -9,8 +9,8 @@ Finds duplicate organizations in your address book by analyzing subtle variation
 
 Installation
 ------------
-* Change directory to **/cerb5/storage/plugins/**
-* `git clone git://github.com/cerb5-plugins/wgm.org_dupe_finder.git`
+* Change directory to **/cerb6/storage/plugins/**
+* `git clone git://github.com/cerb6-plugins/wgm.org_dupe_finder.git`
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
 
 Credits
