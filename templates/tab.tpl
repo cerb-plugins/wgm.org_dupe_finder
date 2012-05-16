@@ -21,9 +21,9 @@
 	<div id="divOrgDupeResults" style="margin-top:10px;"></div>
 	
 	<div class="toolbar" style="display:none;padding:5px;background-color:rgb(235,235,235);border-color:rgb(200,200,200);border-width:0px 1px 1px 1px;">
-		<button type="button" class="merge"><span class="cerb-sprite2 sprite-tick-circle-frame"></span> Merge</button>
+		<button type="button" class="merge"><span class="cerb-sprite2 sprite-tick-circle"></span> Merge</button>
 		<button type="button" class="remove" style="display:none;">Remove</button>
-		<button type="button" class="clear"><span class="cerb-sprite2 sprite-cross-circle-frame"></span> Clear</button>
+		<button type="button" class="clear"><span class="cerb-sprite2 sprite-cross-circle"></span> Clear</button>
 	</div>
 </form>
 
