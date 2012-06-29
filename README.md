@@ -1,4 +1,4 @@
-Cerb5 Plugins - wgm.org_dupe_finder
+Cerb Plugins - wgm.org_dupe_finder
 ===========================================
 Copyright (C) 2012 WebGroup Media, LLC.  
 [http://www.cerberusweb.com/](http://www.cerberusweb.com/)  
@@ -10,7 +10,7 @@ Finds duplicate organizations in your address book by analyzing subtle variation
 Installation
 ------------
 * Change directory to **/cerb6/storage/plugins/**
-* `git clone git://github.com/cerb6-plugins/wgm.org_dupe_finder.git`
+* `git clone git://github.com/cerb-plugins/wgm.org_dupe_finder.git`
 * In your helpdesk, enable the plugin from **Setup->Features & Plugins**.
 
 Credits
