@@ -3,7 +3,7 @@ if(class_exists('Extension_WorkspaceTab', true)):
 class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 	public function renderTab(Model_WorkspacePage $page, Model_WorkspaceTab $tab) {
 		$tpl = DevblocksPlatform::getTemplateService();
-		$tpl->display('devblocks:wgm.org_dupe_finder::tab.tpl');		
+		$tpl->display('devblocks:wgm.org_dupe_finder::tab.tpl');
 	}
 	
 	function findDupesAction() {
@@ -124,6 +124,25 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		}
 		
 		return $str;
+	}
+	
+	function exportTabConfigJson(Model_WorkspacePage $page, Model_WorkspaceTab $tab) {
+		$json = array(
+			'tab' => array(
+				'name' => $tab->name,
+				'extension_id' => $tab->extension_id,
+				'params' => $tab->params,
+			),
+		);
+		
+		return json_encode($json);
+	}
+	
+	function importTabConfigJson($json, Model_WorkspaceTab $tab) {
+		if(empty($tab) || empty($tab->id) || !is_array($json) || !isset($json['tab']))
+			return false;
+		
+		return true;
 	}
 };
 endif;
