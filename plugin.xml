@@ -4,14 +4,14 @@
 	<name>Organization Dupe Finder</name>
 	<description>Finds duplicate organizations in your address book by analyzing subtle variations and misspellings.</description>
 	<author>Webgroup Media, LLC.</author>
-	<version>1.0.8</version>
+	<version>1.0.9</version>
 	<link>http://www.cerbweb.com/book/latest/plugins/wgm.org_dupe_finder</link>
 	<image>plugin.png</image>
  
  	<!-- Requirements -->
 
 	<requires>
-		<app_version min="6.4" max="6.4.99" />
+		<app_version min="6.4" max="6.5.99" />
 	</requires>
  
 	<!-- Plugin Dependencies -->
