@@ -43,8 +43,8 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		$buffer = array();
 		$current_soundex = null;
 		
-		if(is_resource($rs))
-		while($row = mysql_fetch_assoc($rs)) {
+		if($rs instanceof mysqli_result)
+		while($row = mysqli_fetch_assoc($rs)) {
 			$id = $row['id'];
 			$name = $row['name'];
 			$soundex = $row['soundex'];
@@ -72,7 +72,7 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 			$current_soundex = $soundex;
 		}
 		
-		mysql_free_result($rs);
+		mysqli_free_result($rs);
 	}
 	
 	private $_buffer = array();
