@@ -28,14 +28,14 @@
 </form>
 
 <script type="text/javascript">
-$frm = $('#frmFindDupeOrgs');
+var $frmFindDupes = $('#frmFindDupeOrgs');
 
-$frm.find('button.search').click(function(e) {
+$frmFindDupes.find('button.search').click(function(e) {
 	$('#frmOrgDupeResults div.toolbar').prependTo($('#frmOrgDupeResults'));
 	$('#divOrgDupeResults').html('<div style="font-size:18pt;text-align:center;padding:50px;margin:20px;background-color:rgb(232,242,255);">Computing, please wait...</div>');
 	
 	genericAjaxPost('frmFindDupeOrgs','','c=pages&a=handleTabAction',function(html) {
-		$div = $('#divOrgDupeResults');
+		var $div = $('#divOrgDupeResults');
 		$div.html(html);
 		$div.find('input:checkbox')
 			.change(function(e) {
@@ -61,34 +61,28 @@ $frm.find('button.search').click(function(e) {
 	});
 });
 
-$frm = $('#frmOrgDupeResults');
+var $frmDupeResults = $('#frmOrgDupeResults');
 
-$frm.find('div.toolbar > button.clear').click(function(e) {
-	$frm = $(this).closest('form');
-	$frm.find(':checkbox:checked').each(function(e) {
-		$(this).removeAttr('checked');
-	});
+$frmDupeResults.find('div.toolbar > button.clear').click(function(e) {
+	$frmDupeResults.find(':checkbox:checked').prop('checked', false);
 	$(this).closest('div').hide();
 });
 
-$frm.find('div.toolbar > button.merge').click(function(e) {
-	$frm = $(this).closest('form');
- 	var checks = '&org_id[]=' + $frm.find(':checkbox:checked').map(function(e) {
+$frmDupeResults.find('div.toolbar > button.merge').click(function(e) {
+ 	var checks = '&org_id[]=' + $frmDupeResults.find(':checkbox:checked').map(function(e) {
  		return $(this).val();
  	}).get().join('&org_id[]=');
 
  	$popup = genericAjaxPopup('peek','c=contacts&a=showOrgMergeContinuePeek&is_ajax=1' + checks, null, false, '500');
  	$popup.one('org_merge',function(e) {
- 		$frm = $('#frmOrgDupeResults');
- 		$toolbar = $frm.find('div.toolbar');
+ 		$toolbar = $frmDupeResults.find('div.toolbar');
  		$toolbar.find('> button.remove').click();
  		$toolbar.hide();
  	});
 });
 
-$frm.find('div.toolbar > button.remove').click(function(e) {
-	$frm = $(this).closest('form');
-	$frm.find(':checkbox:checked').each(function(box) {
+$frmDupeResults.find('div.toolbar > button.remove').click(function(e) {
+	$frmDupeResults.find(':checkbox:checked').each(function(box) {
 		$li = $(this).closest('li');
 		if($li.closest('ul').find('> li').length == 1)
 			$li.closest('fieldset').remove();
