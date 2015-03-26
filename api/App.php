@@ -13,7 +13,7 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		$tpl = DevblocksPlatform::getTemplateService();
 		
 		// Drop the tmp table if it exists
-		$db->Execute("DROP TABLE IF EXISTS tmp_soundex");
+		$db->ExecuteSlave("DROP TABLE IF EXISTS tmp_soundex");
 		
 		// Create a new soundex index
 		$snd_len = 6;
@@ -29,7 +29,7 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 			$min_len,
 			(!empty($starts_with) ? sprintf("WHERE contact_org.name LIKE %s ", $db->qstr($starts_with.'%')) : '')
 		);
-		$db->Execute($sql);
+		$db->ExecuteSlave($sql);
 
 		$sql = sprintf("SELECT id, name, SUBSTRING(SOUNDEX(name),1,%1\$d) AS soundex ".
 			"FROM contact_org ".
@@ -39,7 +39,7 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 			$min_len
 		);
 		
-		$rs = $db->Execute($sql);
+		$rs = $db->ExecuteSlave($sql);
 		$buffer = array();
 		$current_soundex = null;
 		
