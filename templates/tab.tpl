@@ -10,7 +10,7 @@
 		
 		Starts with: <input type="text" name="starts_with" size="6" value="">
 		
-		<button type="button" class="search"><span class="cerb-sprite sprite-view"></span> {'common.search'|devblocks_translate|capitalize}</button>
+		<button type="button" class="search"><span class="glyphicons glyphicons-search"></span></button>
 	</fieldset>
 </form>
 	
@@ -21,9 +21,9 @@
 	<div id="divOrgDupeResults" style="margin-top:10px;"></div>
 	
 	<div class="toolbar" style="display:none;padding:5px;background-color:rgb(235,235,235);border-color:rgb(200,200,200);border-width:0px 1px 1px 1px;">
-		<button type="button" class="merge"><span class="cerb-sprite2 sprite-tick-circle"></span> Merge</button>
+		<button type="button" class="merge"><span class="glyphicons glyphicons-circle-ok" style="color:rgb(0,180,0);"></span> Merge</button>
 		<button type="button" class="remove" style="display:none;">Remove</button>
-		<button type="button" class="clear"><span class="cerb-sprite2 sprite-cross-circle"></span> Clear</button>
+		<button type="button" class="clear"><span class="glyphicons glyphicons-circle-remove" style="color:rgb(200,0,0);"></span> Clear</button>
 	</div>
 </form>
 
