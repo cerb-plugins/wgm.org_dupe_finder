@@ -4,6 +4,7 @@
 	<input type="hidden" name="tab" value="wgm.orgdupefinder.tab">
 	<input type="hidden" name="tab_id" value="{$tab->id}">
 	<input type="hidden" name="action" value="findDupes">
+	<input type="hidden" name="_csrf_token" value="{$session.csrf_token}">
 
 	<fieldset>
 		<legend>Find Similar Organizations</legend>
@@ -17,7 +18,8 @@
 <form id="frmOrgDupeResults" action="{devblocks_url}{/devblocks_url}" method="POST" onsubmit="return false;">
 	<input type="hidden" name="c" value="contacts">
 	<input type="hidden" name="a" value="showOrgMergeContinuePeek">
-
+	<input type="hidden" name="_csrf_token" value="{$session.csrf_token}">
+	
 	<div id="divOrgDupeResults" style="margin-top:10px;"></div>
 	
 	<div class="toolbar" style="display:none;padding:5px;background-color:rgb(235,235,235);border-color:rgb(200,200,200);border-width:0px 1px 1px 1px;">
