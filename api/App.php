@@ -43,7 +43,9 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		$buffer = array();
 		$current_soundex = null;
 		
-		if($rs instanceof mysqli_result)
+		if(!($rs instanceof mysqli_result))
+			return false;
+		
 		while($row = mysqli_fetch_assoc($rs)) {
 			$id = $row['id'];
 			$name = $row['name'];
