@@ -19,15 +19,15 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		$snd_len = 6;
 		$min_len = 4;
 		$sql = sprintf("CREATE TEMPORARY TABLE tmp_soundex ".
-			"SELECT count(id) AS hits, length(substring(soundex(contact_org.name),1,%1\$d)) AS len, substring(soundex(contact_org.name),1,%1\$d) AS soundex ".
+			"SELECT count(id) AS hits, substring(soundex(contact_org.name),1,%1\$d) AS soundex ".
 			"FROM contact_org ".
+			"WHERE length(substring(soundex(contact_org.name),1,%1\$d)) > %2\$d ".
 			"%3\$s".
 			"GROUP BY soundex ".
-			"HAVING hits > 1 ".
-			"AND len > %2\$d",
+			"HAVING count(id) > 1",
 			$snd_len,
 			$min_len,
-			(!empty($starts_with) ? sprintf("WHERE contact_org.name LIKE %s ", $db->qstr($starts_with.'%')) : '')
+			(!empty($starts_with) ? sprintf("AND contact_org.name LIKE %s ", $db->qstr($starts_with.'%')) : '')
 		);
 		$db->ExecuteSlave($sql);
 
@@ -39,45 +39,33 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 			$min_len
 		);
 		
-		$rs = $db->ExecuteSlave($sql);
+		$rows = $db->GetArraySlave($sql);
+		
 		$buffer = array();
 		$current_soundex = null;
 		
-		if(!($rs instanceof mysqli_result))
+		if(empty($rows))
 			return false;
 		
-		while($row = mysqli_fetch_assoc($rs)) {
+		foreach($rows as $row) {
 			$id = $row['id'];
 			$name = $row['name'];
 			$soundex = $row['soundex'];
 			$indexed = strtolower(DevblocksPlatform::strAlphaNum($name));
 			$row['indexed'] = $this->_removeOrgSuffixes($indexed);
 			
-			if($current_soundex != $soundex) {
-				$this->_buffer = array();
-				
-				if(!empty($buffer)) {
-					usort($buffer, array($this,'_sortByDistance'));
-					//var_dump($this->_buffer);
-					
-					if(!empty($this->_buffer)) {
-						$tpl->assign('similarities', $this->_buffer);
-						$tpl->display('devblocks:wgm.org_dupe_finder::results.tpl');
-					}
-				}
-				
-				$buffer = array();
-				$this->_buffer = array();
-			}
+			if(!isset($buffer[$soundex]))
+				$buffer[$soundex] = array();
 			
-			$buffer[] = $row;
-			$current_soundex = $soundex;
+			$buffer[$soundex][] = $row;
 		}
 		
-		mysqli_free_result($rs);
+		foreach($buffer as $results) {
+			usort($results, array($this,'_sortByDistance'));
+			$tpl->assign('similarities', $results);
+			$tpl->display('devblocks:wgm.org_dupe_finder::results.tpl');
+		}
 	}
-	
-	private $_buffer = array();
 	
 	private function _sortByDistance($a, $b) {
 		$len_a = strlen($a['name']);
@@ -86,12 +74,6 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 		$smaller = ($len_a < $len_b) ? $a : $b;
 		$larger = ($smaller == $a) ? $b : $a;
 		$dist = levenshtein($a['indexed'], $b['indexed']);
-		
-		// If the larger string contains the smaller one verbatim, or they diverge less than 20%
-		if(false !== strstr($larger['indexed'], $smaller['indexed']) || ($dist / $min) <= 0.20) {
-			$this->_buffer[$a['id']] = $a;
-			$this->_buffer[$b['id']] = $b;
-		}
 		
 		if(0==$dist)
 			return $dist;

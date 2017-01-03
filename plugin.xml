@@ -4,20 +4,20 @@
 	<name>Organization Dupe Finder</name>
 	<description>Finds duplicate organizations in your address book by analyzing subtle variations and misspellings.</description>
 	<author>Webgroup Media, LLC.</author>
-	<version>1.0.20</version>
+	<version>1.0.21</version>
 	<link>http://www.cerbweb.com/book/latest/plugins/wgm.org_dupe_finder</link>
 	<image>plugin.png</image>
  
  	<!-- Requirements -->
 
 	<requires>
-		<app_version min="7.2" max="7.2.99" />
+		<app_version min="7.2" max="7.3.99" />
 	</requires>
  
 	<!-- Plugin Dependencies -->
 	
 	<dependencies>
-		<require plugin_id="cerberusweb.core" version="7.2.0" />
+		<require plugin_id="cerberusweb.core" version="7.3.0" />
 	</dependencies>
 
 	<!-- Extensions -->
