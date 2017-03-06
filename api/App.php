@@ -51,7 +51,7 @@ class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 			$id = $row['id'];
 			$name = $row['name'];
 			$soundex = $row['soundex'];
-			$indexed = strtolower(DevblocksPlatform::strAlphaNum($name));
+			$indexed = DevblocksPlatform::strLower(DevblocksPlatform::strAlphaNum($name));
 			$row['indexed'] = $this->_removeOrgSuffixes($indexed);
 			
 			if(!isset($buffer[$soundex]))
