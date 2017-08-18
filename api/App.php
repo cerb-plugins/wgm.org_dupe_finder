@@ -2,15 +2,15 @@
 if(class_exists('Extension_WorkspaceTab', true)):
 class WorkspaceTab_WgmOrgDupeFinder extends Extension_WorkspaceTab {
 	public function renderTab(Model_WorkspacePage $page, Model_WorkspaceTab $tab) {
-		$tpl = DevblocksPlatform::getTemplateService();
+		$tpl = DevblocksPlatform::services()->template();
 		$tpl->display('devblocks:wgm.org_dupe_finder::tab.tpl');
 	}
 	
 	function findDupesAction() {
 		$starts_with = DevblocksPlatform::importGPC($_REQUEST['starts_with'],'string','');
 
-		$db = DevblocksPlatform::getDatabaseService();
-		$tpl = DevblocksPlatform::getTemplateService();
+		$db = DevblocksPlatform::services()->database();
+		$tpl = DevblocksPlatform::services()->template();
 		
 		// Drop the tmp table if it exists
 		$db->ExecuteSlave("DROP TABLE IF EXISTS tmp_soundex");
